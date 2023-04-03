@@ -24,7 +24,7 @@ Unicorn1.say("UwU")
 
 class Vampires
     attr_reader :name, :pet, :thirsty
-    def initialize(name, pet = "bat")
+    def initialize(name, pet = "bat", thirsty = true)
         @name = name
         @pet = pet
         @thirsty = true
@@ -67,7 +67,7 @@ Egg1 = Dragon.new("Volknir", "Eragorn", "blue")
 p Egg1
 Egg1.eat(5)
 p Egg1
-attr_reader :name, :rider, :color, :is_hungry
+
 
 #  Write a Hobbit class
 #  it should have a dynamic name attribute (string)
@@ -80,20 +80,28 @@ attr_reader :name, :rider, :color, :is_hungry
 
 class Hobbit
     attr_reader :name, :disposition, :age
-    def initialize(name, disposition, age, is_adult = false)
+    def initialize(name, disposition, age = 0, is_adult = false, is_old = false, has_ring = false)
         @name = name
         @disposition = disposition
         @age = age
-    end
-    def celebrate_birthday
-        p @age.succ
+        @is_old = false
+        @has_ring = false
         if @age >= 33
             @is_adult = true
         end
+        if  @age >= 101
+            @is_old = true
+        end
+        if @name == "Frodo"
+            @has_ring = true
+        end
+    end
+    def celebrate_birthday
+        p @age.succ
     end
 end
 
 
-Baggin1 = Hobbit.new("Bilbo", "timid", 29)
-
+Baggin1 = Hobbit.new("Bilbo", "timid", 101)
+Baggin2 = Hobbit.new("Frodo", "couragous", 25)
 Baggin1.celebrate_birthday
