@@ -3,27 +3,25 @@
 # it should have a color attribute, that is silver by default
 # it should have a method called "say" that returns whatever string is passed in, with "*~*" at the beginning and end of the string
 class Unicorn
-    attr_reader :name, :statement
-    def initialize(name, color, statement)
+    attr_reader :name, :color
+    def initialize(name, color = "silver")
         @name = name
-        @color = silver
-        @statement = statement
+        @color = color
     end
-    
     def say(statement)
-        p "*~*" @statement "*~*"
+        p "*~*", @statement = statement, "*~*" 
     end
 end
 
-Unicorn1 = Unicorn.new("Sasha", "gold")
-
-
+Unicorn1 = Unicorn.new("Sasha")
+Unicorn1.say("UwU")
 
 #  Write a class called Vampire
 #  it should have a dynamic name attribute
 #  it should have a pet attribute, that is a bat, by default BUT it could be dynamic if info is passed in initially
 #  it should have a thirsty attribute, that is true by default
 #  it should have a drink method. When called, the thirsty attribute changes to false
+
 class Vampires
     attr_reader :name, :pet, :thirsty
     def initialize(name, pet = "bat")
@@ -36,27 +34,8 @@ class Vampires
     end
 end
 
-Lord1 = Vampires.new("Vlad", "Butler")
+Lord1 = Vampires.new("Vlad", "Gargoyle")
 Lord1.drink(true)
-
-
-class Vampires
-    attr_reader :name, :bat
-    def initialize(name, pet)
-        @name = name
-        @thirsty = true
-    end
-
-    def name_pet(pet)
-        if 
-            @pet = pet
-        else
-            @pet = bat
-        end
-    end
-end
-
-
 
 
 #  Write a Dragon class
@@ -68,7 +47,7 @@ end
 
 class Dragon
     attr_reader :name, :rider, :color, :is_hungry
-    def initialize(name, rider, color, is_hungry)
+    def initialize(name, rider, color, is_hungry = true)
         @name = name
         @rider = rider
         @color = color
@@ -88,7 +67,7 @@ Egg1 = Dragon.new("Volknir", "Eragorn", "blue")
 p Egg1
 Egg1.eat(5)
 p Egg1
-        
+attr_reader :name, :rider, :color, :is_hungry
 
 #  Write a Hobbit class
 #  it should have a dynamic name attribute (string)
@@ -101,12 +80,20 @@ p Egg1
 
 class Hobbit
     attr_reader :name, :disposition, :age
-    def initalize(name, disposition, age)
+    def initialize(name, disposition, age, is_adult = false)
         @name = name
         @disposition = disposition
-        @age = 0
+        @age = age
     end
+    def celebrate_birthday
+        p @age.succ
+        if @age >= 33
+            @is_adult = true
+        end
+    end
+end
 
-    def celebrate_birthday(age)
 
-    
+Baggin1 = Hobbit.new("Bilbo", "timid", 29)
+
+Baggin1.celebrate_birthday
