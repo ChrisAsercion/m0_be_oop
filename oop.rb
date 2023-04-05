@@ -24,12 +24,12 @@ Unicorn1.say("UwU")
 
 class Vampires
     attr_reader :name, :pet, :thirsty
-    def initialize(name, pet = "bat", thirsty = true)
+    def initialize(name, pet = "bat")
         @name = name
         @pet = pet
         @thirsty = true
     end
-    def drink(thirsty)
+    def drink
         @thirsty = false
     end
 end
@@ -46,16 +46,17 @@ Lord1.drink(true)
 #  it should have a eat method. If the dragon eats 4 times, it is no longer hungry
 
 class Dragon
-    attr_reader :name, :rider, :color, :is_hungry
-    def initialize(name, rider, color, is_hungry = true)
+    attr_reader :name, :rider, :color, :counter, :is_hungry
+    def initialize(name, rider, color, counter = 0, is_hungry = false)
         @name = name
         @rider = rider
         @color = color
+        @counter = 0
         @is_hungry = true
     end
-
-    def eat(is_hungry)
-        if is_hungry >= 4
+    def eat
+        @counter += 1
+        if @counter >= 4
             p @is_hungry = false
         else
             p is_hungry = true
@@ -65,10 +66,20 @@ end
     
 Egg1 = Dragon.new("Volknir", "Eragorn", "blue")
 p Egg1
-Egg1.eat(5)
+Egg1.eat
 p Egg1
 
-
+def eat(counter)
+    counter +=1
+end
+def eat(is_hungry)
+        if is_hungry >= 4
+            p @is_hungry = false
+        else
+            p is_hungry = true
+        end
+    end
+    
 #  Write a Hobbit class
 #  it should have a dynamic name attribute (string)
 #  it should have a dynamic disposition attribute (string)
@@ -79,25 +90,25 @@ p Egg1
 #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
 
 class Hobbit
-    attr_reader :name, :disposition, :age
-    def initialize(name, disposition, age = 0, is_adult = false, is_old = false, has_ring = false)
+    attr_reader :name, :disposition, :age, :is_adult, :is_old
+    def initialize(name, disposition, age = 0)
         @name = name
         @disposition = disposition
         @age = age
         @is_old = false
         @has_ring = false
-        if @age >= 33
-            @is_adult = true
-        end
-        if  @age >= 101
-            @is_old = true
-        end
+    end
+
+    def
         if @name == "Frodo"
             @has_ring = true
         end
     end
+
     def celebrate_birthday
-        p @age.succ
+        @age += 1   
+        @is_adult = true if @age >= 33
+        @is_old = true if @age >= 101
     end
 end
 
